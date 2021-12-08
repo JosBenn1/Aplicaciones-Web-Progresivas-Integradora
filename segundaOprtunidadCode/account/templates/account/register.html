@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<style type="text/css">
+
+ 
+
+</style>
+
+<section class="h-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card card-registration my-4">
+                    <div class="row g-0">
+                        <div class="col-xl-6 d-none d-xl-block">
+                          <img src="{% static 'img/form.jpg' %}" alt="Sample photo" class="img-fluid" style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"/>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card-body p-md-5 text-black">
+                                <h3 class="mb-5 text-uppercase">REGISTRATE PARA SER PARTE DE SEGUNDA OPORTUNIDAD</h3>
+                                <form class="form" method="post">
+                                  {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">
+                                                <input type="text" name="first_name" id="inputFirstname" class="form-control" placeholder="" required>
+                                                <label class="form-label" for="form3Example1m">Nombre</label>  
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">
+                                                <input type="text" name="last_name" id="inputLastname" class="form-control" placeholder="" required>
+                                                <label class="form-label" for="form3Example1n">Apellidos</label>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                    
+                                    <div class="form-outline mb-4">
+                                        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="" required>
+                                        <label class="form-label" for="form3Example90">Nombre de usuario</label>
+                                    </div>
+                    
+                                    <div class="form-outline mb-4">
+                                        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="" required autofocus>
+                                        <label class="form-label" for="form3Example97">Correo electronico</label>
+                                    </div>
+                                    <div class="row">
+                                            
+                                        <div class="col-md-6 mb-4">
+                                          <div class="form-outline">
+											<input type="password" name="password1" id="inputPassword1" class="form-control" placeholder="" required>
+                                              <label class="form-label" for="form3Example1m1">Contraseña</label>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">
+                                                <input type="password" name="password2" id="inputPassword2" class="form-control" placeholder="" required>
+                                                <label class="form-label" for="form3Example1n1">confirmar contraseña</label>
+                                            </div>
+                                        </div>
+                                    </div>
+									{% for field in registration_form %}
+										<p>
+										{% for error in field.errors %}
+										<p style="color: red">{{ error }}</p>
+										{% endfor %}
+										</p>
+										{% endfor %}
+										{% if registration_form.non_field_errors %}
+										<div style="color: red">
+											<p>{{registration_form.non_field_errors}}</p>
+										</div>
+
+										{% endif %}
+                                    <div class="d-flex justify-content-end pt-3">
+                                        <button type="button" class="btn btn-light btn-lg">Regresar a login</button>
+                                        <button type="submit" id="submit" class="btn btn-warning btn-lg ms-2">Registrarse</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock content %}
